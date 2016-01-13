@@ -84,13 +84,9 @@ def parse_arguments():
 
 
 def scrape_page(mix_number):
-    """Generates a URL & scrapes the page
-
-    :param mix_number: The ID number for the desired mix
-    """
+    """Generates a URL & scrapes the page"""
 
     url = 'http://zenius-i-vanisher.com/v5.2/gamedb.php?gameid=%s&show_notecounts=1&sort=songname&sort_order=asc' % mix_number  #noqa
-    print url
 
     r = requests.get(url)
     if r.status_code != 200:
@@ -156,6 +152,10 @@ def get_song_data(table):
 
     songs = []
     for row in table.findAll('tr'):
+        # Ignore header rows in the table
+        if not row.find('td'):
+            continue
+
         # Placeholder dict for this song
         song = {
             'name': '',
