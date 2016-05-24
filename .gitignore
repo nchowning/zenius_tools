@@ -1,5 +1,6 @@
 #####=== Project Specific ===#####
 .venv
+*.json
 
 #### joe made this: http://goel.io/joe
 
